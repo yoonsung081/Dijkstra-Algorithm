@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>다익스트라 시각화</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>다익스트라 알고리즘 시각화</h1>
+      <p class="hint" style="margin-top: 0">
+        GitHub Pages 정적 사이트 — 출발 노드를 고른 뒤 계산하면 브라우저에서 최단 거리를 구합니다.
+      </p>
+
+      <div class="control-panel">
+        <label for="start_node">출발 노드 선택:</label>
+        <select id="start_node" name="start_node"></select>
+        <button type="button" id="compute">최단 거리 계산</button>
+      </div>
+
+      <div class="layout">
+        <div class="graph-wrapper">
+          <svg id="graph" viewBox="0 0 500 350" aria-label="그래프"></svg>
+        </div>
+
+        <div class="table-wrapper">
+          <h2>최단 거리 테이블</h2>
+          <p id="table-hint" class="hint">
+            출발 노드를 선택하고 &quot;최단 거리 계산&quot;을 눌러 보세요.
+          </p>
+          <table id="dist-table" class="hidden">
+            <thead>
+              <tr>
+                <th>노드</th>
+                <th>최소 비용</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
