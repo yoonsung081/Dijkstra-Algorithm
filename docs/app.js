@@ -101,6 +101,18 @@ function uniqueUndirectedEdges(graph) {
   return edges;
 }
 
+function weightLabelPosition(x1, y1, x2, y2) {
+  const mx = (x1 + x2) / 2;
+  const my = (y1 + y2) / 2;
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const len = Math.hypot(dx, dy) || 1;
+  const nx = -dy / len;
+  const ny = dx / len;
+  const offset = 10;
+  return [mx + nx * offset, my + ny * offset];
+}
+
 function buildStaticGraph(svg) {
   const NS = "http://www.w3.org/2000/svg";
 
@@ -133,8 +145,9 @@ function buildStaticGraph(svg) {
     line.setAttribute("class", "edge");
     svg.appendChild(line);
     const text = document.createElementNS(NS, "text");
-    text.setAttribute("x", String((x1 + x2) / 2));
-    text.setAttribute("y", String((y1 + y2) / 2 - 5));
+    const [tx, ty] = weightLabelPosition(x1, y1, x2, y2);
+    text.setAttribute("x", String(tx));
+    text.setAttribute("y", String(ty));
     text.setAttribute("class", "weight");
     text.textContent = String(w);
     svg.appendChild(text);
@@ -162,7 +175,7 @@ function buildStaticGraph(svg) {
 
     const distEl = document.createElementNS(NS, "text");
     distEl.setAttribute("x", String(x));
-    distEl.setAttribute("y", String(y + 32));
+    distEl.setAttribute("y", String(y + 44));
     distEl.setAttribute("class", "distance hidden");
     distEl.id = `node-dist-${node}`;
 
